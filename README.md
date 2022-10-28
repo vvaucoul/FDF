@@ -5,7 +5,7 @@
 
 - Clone Repository
 ```bash
-git clone https://vvaucoul/FDF && cd FDF
+git clone https://github.com/vvaucoul/FDF && cd FDF
 ```
 
 - Compilation
