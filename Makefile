@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vvaucoul <vvaucoul@student.42.fr>          +#+  +:+       +#+         #
+#    By: vvaucoul <vvaucoul@student.42.Fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/08 21:09:46 by vvaucoul          #+#    #+#              #
-#    Updated: 2021/07/08 10:27:35 by vvaucoul         ###   ########.fr        #
+#    Updated: 2022/10/28 15:34:47 by vvaucoul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,23 +96,22 @@ SRCS			=	$(SRCS_MLX)	\
 OBJS			=	 $(SRCS:.c=.o)
 
 %.o : %.c
-	@echo -n "\r                                                    "
+	@printf "\r                                                    "
 	@$(PRINT_BAR) Compiling $@
 	@$(CC) $(CFLAGS) $(FLAGS) $(LIBS) -c $< -o ${<:.c=.o}
-	@sleep 0.1 > /dev/null
 
 ### COLORS ###
-NOC         = \033[0m
-BOLD        = \033[1m
-UNDERLINE   = \033[4m
-BLACK       = \033[1;30m
-RED         = \033[1;31m
-GREEN       = \033[1;32m
-YELLOW      = \033[1;33m
-BLUE        = \033[1;34m
-VIOLET      = \033[1;35m
-CYAN        = \033[1;36m
-WHITE       = \033[1;37m
+NOC         = $'\033[0m
+BOLD        = $'\033[1m
+UNDERLINE   = $'\033[4m
+BLACK       = $'\033[1;30m
+RED         = $'\033[1;31m
+GREEN       = $'\033[1;32m
+YELLOW      = $'\033[1;33m
+BLUE        = $'\033[1;34m
+VIOLET      = $'\033[1;35m
+CYAN        = $'\033[1;36m
+WHITE       = $'\033[1;37m
 
 ### CLEAN ###
 RM				= rm -f
@@ -124,41 +123,41 @@ all:			init mlx_linux $(NAME)
 $(NAME):		$(OBJS)
 
 				@$(CC) $(OBJS) $(CFLAGS) $(LIBS) -o $(NAME)
-				@echo -n "\r                                                    "
-			 	@echo "\r$(GREEN)- [FDF] Compiled !$(NOC)"
+				@printf "\r                                                    "
+			 	@printf "\r$(GREEN)- [FDF] Compiled !$(NOC)\n"
 
 ifeq ($(OS_VERSION), Linux)
 mlx_linux:
-				@echo "$(YELLOW)- Compiling [MLX] $(NOC)"
+				@printf "$(YELLOW)- Compiling [MLX] $(NOC)\n"
 				@cd mlx && make > /dev/null && cd ..
 				@cp -f mlx/libmlx_Linux.a libs/mlx.a
-				@echo "$(GREEN)- [MLX] Compiled$(NOC)"
+				@printf "$(GREEN)- [MLX] Compiled$(NOC)\n"
 				@sleep 0.5 > /dev/null
-				@echo "$(GREEN)- Starting compilation$(NOC)"
+				@printf "$(GREEN)- Starting compilation$(NOC)\n"
 				@sleep 0.5 > /dev/null
 else
 mlx_linux:
-				@echo "$(YELLOW)Using 42 MAC MLX $(NOC)"
+				@printf "$(YELLOW)Using 42 MAC MLX $(NOC)\n"
 endif
 
 init:
 				@mkdir -p libs
 				@mkdir -p $(OBJ_PATH)
-				@echo "$(YELLOW)- Compilation for : " $(OS_VERSION) "$(NOC)"
+				@printf "$(YELLOW)- Compilation for : $(OS_VERSION) $(NOC)\n"
 				@sleep 0.5 > /dev/null
 
 clean:
-				@echo "$(RED)- Clean files$(NOC)"
+				@printf "$(RED)- Clean files$(NOC)\n"
 				@$(RM) $(OBJS)
 				@$(RM) -r $(ALL_LIB_DIR)
 				@$(RM) -r $(OBJ_PATH)
 				@$(RM) -r libs
-				@echo "$(RED)- Clean MLX$(NOC)"
+				@printf "$(RED)- Clean MLX$(NOC)\n"
 				@cd mlx && make clean > /dev/null && cd ..
 
 fclean:			clean
 				@$(RM) $(NAME)
-				@echo "$(RED)- Remove $(NAME)$(NOC)"
+				@printf "$(RED)- Remove $(NAME)$(NOC)\n"
 
 re:				fclean all
 
