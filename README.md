@@ -53,7 +53,7 @@ make
 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 ```
 
-Each point is has its x and y coordinates and its value corresponds to its height.
+Each point has its x and y coordinates and its value corresponds to its height.
 
 ## Example
 ![Animation](https://user-images.githubusercontent.com/66129673/198616764-c00bf9a1-e3bf-4274-afff-c20de465155a.gif)
